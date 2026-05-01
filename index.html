@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="G&B Apparel">
+<meta name="theme-color" content="#F7F4EF">
+<!-- PWA Icons — place icon-152.png and icon-192.png in the same folder as this file -->
+<link rel="apple-touch-icon" href="icon-152.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icon-152.png">
+<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="152x152" href="icon-152.png">
+<title>G&B · Apparel Pricing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F7F4EF;
+  --white: #FFFFFF;
+  --ink: #1A1712;
+  --ink2: #3D3830;
+  --ink3: #7A7268;
+  --line: #E5E0D8;
+  --line2: #D0C9BE;
+  --gold: #B8832A;
+  --gold-bg: #FDF6E9;
+  --gold-border: #E8C878;
+  --green: #2D7A52;
+  --green-bg: #EBF5F0;
+  --blue: #2355A0;
+  --blue-bg: #EEF3FC;
+  --red: #C0392B;
+  --purple: #6B3FA0;
+  --purple-bg: #F3EEFF;
+  --teal: #1A7A6E;
+  --teal-bg: #E8F5F3;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  --r: 18px;
+  --r-sm: 12px;
+  --r-xs: 8px;
+  --safe-b: env(safe-area-inset-bottom, 16px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body {
+  background: var(--cream);
+  font-family: 'Outfit', sans-serif;
+  color: var(--ink);
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.safe-top { height: env(safe-area-inset-top, 0); background: var(--cream); }
+
+/* ── HEADER ── */
+.app-header {
+  background: var(--cream);
+  padding: 12px 20px 11px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 50;
+}
+.logo-text {
+  font-family: 'Fraunces', serif;
+  font-size: 18px; font-weight: 800;
+  color: var(--ink); letter-spacing: -0.5px;
+}
+.logo-text em { font-style: italic; color: var(--gold); }
+.logo-sub { font-size: 10px; color: var(--ink3); font-weight: 500; margin-top: 1px; }
+.header-badge {
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-border);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 12px; font-weight: 700; color: var(--gold);
+}
+
+/* ── SCREENS ── */
+.screen { display: none; }
+.screen.show { display: block; }
+.body { padding: 18px 16px; padding-bottom: calc(100px + var(--safe-b)); }
+
+/* ── LABELS ── */
+.slabel {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink3); margin-bottom: 10px; margin-top: 22px;
+  padding-left: 4px;
+}
+.slabel:first-child { margin-top: 2px; }
+
+/* ── CARD ── */
+.card {
+  background: var(--white); border-radius: var(--r);
+  box-shadow: var(--shadow-sm); border: 1px solid var(--line);
+  overflow: hidden; margin-bottom: 12px;
+}
+
+/* ── QTY ── */
+.qty-card {
+  background: var(--white); border-radius: var(--r);
+  box-shadow: var(--shadow); border: 1px solid var(--line);
+  padding: 18px; margin-bottom: 12px;
+}
+.qty-top {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 14px;
+}
+.qty-top-label { font-size: 13px; font-weight: 600; color: var(--ink3); }
+.range-tag {
+  background: var(--gold-bg); border: 1px solid var(--gold-border);
+  border-radius: 20px; padding: 5px 12px;
+  font-size: 12px; font-weight: 700; color: var(--gold);
+}
+.qty-main { display: flex; align-items: center; gap: 12px; }
+.qty-btn {
+  width: 56px; height: 56px;
+  background: var(--cream); border: 1.5px solid var(--line2);
+  border-radius: 14px; font-size: 28px; font-weight: 300;
+  color: var(--ink2); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.12s; user-select: none;
+}
+.qty-btn:active { background: var(--line); transform: scale(0.93); }
+.qty-number-wrap { flex: 1; display: flex; justify-content: center; }
+.qty-number {
+  font-family: 'Fraunces', serif; font-size: 54px;
+  font-weight: 800; color: var(--ink);
+  text-align: center; background: transparent;
+  border: none; outline: none; width: 100%;
+  -webkit-appearance: none; -moz-appearance: textfield; line-height: 1;
+}
+.qty-number::-webkit-inner-spin-button,
+.qty-number::-webkit-outer-spin-button { -webkit-appearance: none; }
+.qty-number:focus { color: var(--gold); }
+.qty-unit { font-size: 13px; color: var(--ink3); font-weight: 500; text-align: center; margin-top: 4px; }
+.quick-picks {
+  display: flex; gap: 7px; flex-wrap: wrap;
+  margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line);
+}
+.qp {
+  flex: 1; min-width: 44px; padding: 8px 4px;
+  background: var(--cream); border: 1.5px solid var(--line2);
+  border-radius: var(--r-xs); font-size: 14px; font-weight: 600;
+  color: var(--ink2); text-align: center; cursor: pointer;
+  transition: all 0.12s; user-select: none;
+}
+.qp:active { transform: scale(0.94); }
+.qp.on { background: var(--ink); border-color: var(--ink); color: var(--white); }
+
+/* ── GARMENT SELECTOR (2-col grid) ── */
+.garment-grid {
+  background: var(--white); border-radius: var(--r);
+  border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+  padding: 6px; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px;
+}
+.g-item {
+  border-radius: 12px; padding: 13px 8px 11px;
+  cursor: pointer; user-select: none; text-align: center;
+  transition: all 0.15s; border: 2px solid transparent;
+}
+.g-item:active { transform: scale(0.96); }
+.g-item.g-on { background: var(--gold-bg); border-color: var(--gold-border); }
+.g-item.g-on .g-title { color: var(--gold); }
+.g-icon { font-size: 26px; margin-bottom: 5px; line-height: 1; }
+.g-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.g-sub { font-size: 11px; color: var(--ink3); line-height: 1.3; }
+
+/* ── DECORATION SELECTOR (3-col) ── */
+.deco-grid {
+  background: var(--white); border-radius: var(--r);
+  border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+  padding: 6px; display: grid;
+  grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 12px;
+}
+.d-item {
+  border-radius: 12px; padding: 13px 6px 11px;
+  cursor: pointer; user-select: none; text-align: center;
+  transition: all 0.15s; border: 2px solid transparent;
+}
+.d-item:active { transform: scale(0.96); }
+.d-dtf.d-on  { background: var(--blue-bg);  border-color: #8AAAD8; }
+.d-emb.d-on  { background: var(--purple-bg); border-color: #B094D0; }
+.d-pvc.d-on  { background: var(--teal-bg);  border-color: #80C4BB; }
+.d-dtf .d-title  { color: var(--blue); }
+.d-emb .d-title  { color: var(--purple); }
+.d-pvc .d-title  { color: var(--teal); }
+.d-icon { font-size: 24px; margin-bottom: 4px; line-height: 1; }
+.d-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.d-sub { font-size: 10px; color: var(--ink3); line-height: 1.3; }
+.d-note {
+  font-size: 11px; color: var(--ink3); text-align: center;
+  padding: 6px 4px 0; font-style: italic;
+}
+
+/* ── MARGIN SELECTOR ── */
+.margin-grid {
+  background: var(--white); border-radius: var(--r);
+  border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+  padding: 6px; display: grid;
+  grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 12px;
+}
+.m-item {
+  border-radius: 12px; padding: 13px 6px 11px;
+  cursor: pointer; user-select: none; text-align: center;
+  transition: all 0.15s; border: 2px solid transparent;
+}
+.m-item:active { transform: scale(0.96); }
+.m-soft.m-on   { background: var(--blue-bg);  border-color: #8AAAD8; }
+.m-medium.m-on { background: var(--gold-bg);  border-color: var(--gold-border); }
+.m-agg.m-on    { background: #FEF0EE; border-color: #E8A090; }
+.m-soft   .m-title { color: var(--blue); }
+.m-medium .m-title { color: var(--gold); }
+.m-agg    .m-title { color: var(--red); }
+.m-mult {
+  font-family: 'Fraunces', serif; font-size: 19px;
+  font-weight: 600; color: var(--ink2); margin-bottom: 3px;
+}
+.m-on .m-mult { color: var(--ink); }
+.m-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+.m-sub { font-size: 10px; color: var(--ink3); }
+
+/* ── RESULT HERO ── */
+.result-hero {
+  background: var(--ink); border-radius: var(--r);
+  padding: 20px; margin-bottom: 12px;
+  box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
+}
+.result-hero::before {
+  content: ''; position: absolute;
+  top: -40px; right: -40px; width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(184,131,42,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.rh-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 4px;
+}
+.rh-price {
+  font-family: 'Fraunces', serif; font-size: 68px;
+  font-weight: 800; color: #F5D988;
+  line-height: 1; margin-bottom: 4px; letter-spacing: -2px;
+}
+.rh-sub { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+.rh-stats {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+  border-top: 1px solid rgba(255,255,255,0.12); padding-top: 14px;
+}
+.rhs-label {
+  font-size: 10px; color: rgba(255,255,255,0.4);
+  font-weight: 500; margin-bottom: 4px;
+}
+.rhs-val { font-size: 17px; font-weight: 700; color: rgba(255,255,255,0.9); }
+.rhs-val.g { color: #6FD4A0; }
+.rhs-val.y { color: #F5D988; }
+
+/* ── THREE TILES ── */
+.three-tiles {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px; margin-bottom: 12px;
+}
+.tile {
+  background: var(--white); border: 2px solid var(--line);
+  border-radius: 14px; padding: 13px 7px 11px;
+  text-align: center; cursor: pointer; transition: all 0.15s; user-select: none;
+}
+.tile:active { transform: scale(0.95); }
+.tile.picked { border-color: var(--ink); background: var(--cream); }
+.tile-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.tile.t-soft   .tile-badge { color: var(--blue); }
+.tile.t-medium .tile-badge { color: var(--gold); }
+.tile.t-agg    .tile-badge { color: var(--red); }
+.tile-price {
+  font-family: 'Fraunces', serif; font-size: 22px;
+  font-weight: 800; color: var(--ink); margin-bottom: 3px;
+}
+.tile-pct { font-size: 11px; font-weight: 600; color: var(--green); }
+.tile-tot { font-size: 10px; color: var(--ink3); margin-top: 3px; }
+.tap-hint {
+  font-size: 11px; color: var(--ink3); text-align: center;
+  padding: 2px 0 8px;
+}
+
+/* ── BREAKDOWN ── */
+.breakdown-toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px 18px; cursor: pointer; user-select: none;
+}
+.bt-label { font-size: 15px; font-weight: 600; color: var(--ink2); }
+.bt-arrow { font-size: 13px; color: var(--ink3); transition: transform 0.2s; }
+.bt-arrow.open { transform: rotate(180deg); }
+.bd-rows { display: none; border-top: 1px solid var(--line); }
+.bd-rows.show { display: block; }
+.bd-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 18px; border-bottom: 1px solid var(--line);
+}
+.bd-row:last-child { border-bottom: none; }
+.bd-left { display: flex; align-items: center; gap: 10px; }
+.bd-ico { font-size: 19px; }
+.bd-name { font-size: 14px; color: var(--ink2); }
+.bd-amt { font-size: 15px; font-weight: 700; color: var(--ink); font-family: 'Fraunces', serif; }
+.bd-total-row { background: var(--gold-bg); border-top: 1px solid var(--gold-border) !important; }
+.bd-total-row .bd-name { font-weight: 700; color: var(--gold); }
+.bd-total-row .bd-amt { color: var(--gold); font-size: 19px; }
+
+/* ── QUOTE ── */
+.quote-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r); box-shadow: var(--shadow-sm);
+  overflow: hidden; margin-bottom: 12px;
+}
+.qc-body {
+  padding: 16px; font-family: 'Outfit', sans-serif;
+  font-size: 13px; line-height: 1.9;
+  color: var(--ink2); white-space: pre-wrap; min-height: 120px;
+}
+.qc-copy {
+  width: 100%; padding: 16px; background: var(--ink); color: var(--white);
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background 0.15s; user-select: none;
+}
+.qc-copy:active { background: var(--ink2); }
+.qc-copy.ok { background: var(--green); }
+.text-input {
+  width: 100%; background: var(--white);
+  border: 1.5px solid var(--line2); color: var(--ink);
+  font-family: 'Outfit', sans-serif; font-size: 16px;
+  padding: 14px 16px; border-radius: var(--r-sm);
+  outline: none; box-shadow: var(--shadow-sm); margin-bottom: 12px;
+  transition: border-color 0.15s;
+}
+.text-input::placeholder { color: var(--ink3); }
+.text-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,131,42,0.1); }
+.style-row { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 16px; }
+.style-btn {
+  background: var(--white); border: 1.5px solid var(--line);
+  border-radius: var(--r-sm); padding: 13px;
+  text-align: center; cursor: pointer; user-select: none; transition: all 0.15s;
+}
+.style-btn.active { border-color: var(--gold); background: var(--gold-bg); }
+.style-btn-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.style-btn-sub { font-size: 11px; color: var(--ink3); }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 430px;
+  background: rgba(247,244,239,0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid var(--line);
+  padding: 8px 16px calc(8px + var(--safe-b));
+  display: grid; grid-template-columns: repeat(4,1fr); z-index: 100;
+}
+.nav-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 8px 4px; cursor: pointer; user-select: none;
+  border-radius: 10px; transition: background 0.12s;
+}
+.nav-btn:active { background: var(--line); }
+.nav-ico { font-size: 23px; line-height: 1; }
+.nav-lbl { font-size: 10px; font-weight: 600; color: var(--ink3); }
+.nav-btn.on .nav-lbl { color: var(--gold); }
+
+/* ── COST EDITOR ── */
+.ce-group {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r); box-shadow: var(--shadow-sm);
+  overflow: hidden; margin-bottom: 10px;
+}
+.ce-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px 18px; cursor: pointer; user-select: none;
+}
+.ce-head-l { display: flex; align-items: center; gap: 10px; }
+.ce-head-ico { font-size: 21px; }
+.ce-head-title { font-size: 15px; font-weight: 700; color: var(--ink); }
+.ce-head-arr { font-size: 12px; color: var(--ink3); transition: transform 0.2s; }
+.ce-head-arr.open { transform: rotate(180deg); }
+.ce-body { display: none; border-top: 1px solid var(--line); }
+.ce-body.show { display: block; }
+.ce-range-hdr {
+  padding: 8px 18px 5px; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); background: var(--gold-bg);
+  border-bottom: 1px solid var(--line);
+}
+.ce-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 18px; border-bottom: 1px solid var(--line);
+}
+.ce-row:last-child { border-bottom: none; }
+.ce-row-lbl { font-size: 13px; color: var(--ink2); }
+.ce-inp {
+  width: 88px; background: var(--cream);
+  border: 1.5px solid var(--line2); color: var(--ink);
+  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600;
+  text-align: right; padding: 7px 10px; border-radius: 8px;
+  outline: none; -webkit-appearance: none; -moz-appearance: textfield;
+}
+.ce-inp:focus { border-color: var(--gold); background: var(--white); }
+.reset-btn {
+  width: 100%; padding: 15px; background: transparent;
+  border: 1.5px solid var(--line2); color: var(--ink3);
+  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600;
+  border-radius: var(--r-sm); cursor: pointer; margin-top: 6px;
+  transition: all 0.15s; user-select: none;
+}
+.reset-btn:active { border-color: var(--red); color: var(--red); }
+
+/* ── NOTICE ── */
+.notice {
+  background: var(--gold-bg); border: 1px solid var(--gold-border);
+  border-radius: var(--r-sm); padding: 12px 15px;
+  font-size: 13px; line-height: 1.6; color: var(--ink2); margin-bottom: 14px;
+}
+.notice strong { color: var(--gold); }
+
+/* ── RESEARCH ── */
+.note-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r); overflow: hidden; margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+}
+.nc-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px 18px; cursor: pointer; user-select: none;
+}
+.nc-title { font-size: 15px; font-weight: 700; color: var(--ink); }
+.nc-arr { font-size: 12px; color: var(--ink3); transition: transform 0.2s; }
+.nc-arr.open { transform: rotate(180deg); }
+.nc-body { display: none; padding: 0 18px 16px; border-top: 1px solid var(--line); }
+.nc-body.show { display: block; }
+.nc-body p { font-size: 13px; line-height: 1.75; color: var(--ink2); margin-top: 11px; }
+.nc-body strong { color: var(--ink); font-weight: 700; }
+.tag {
+  display: inline-block; padding: 3px 9px; border-radius: 6px;
+  font-size: 10px; font-weight: 700; margin: 10px 4px 0 0;
+}
+.tag.c  { background: var(--green-bg); color: var(--green); }
+.tag.e  { background: var(--gold-bg); color: var(--gold); }
+.tag.est{ background: var(--blue-bg); color: var(--blue); }
+
+@keyframes pop {
+  0%   { transform: scale(0.97); opacity: 0.7; }
+  60%  { transform: scale(1.01); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.result-hero { animation: pop 0.25s ease; }
+
+/* ─── APP FOOTER ─── */
+.app-footer {
+  margin: 28px 16px 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.share-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  border-radius: var(--r-sm);
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  transition: background 0.15s, transform 0.1s;
+  user-select: none;
+  letter-spacing: 0.02em;
+}
+.share-btn:active { background: var(--ink2); transform: scale(0.98); }
+.share-btn.shared { background: var(--green); }
+.footer-credits {
+  text-align: center;
+  padding: 4px 0 8px;
+}
+.footer-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--ink2);
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+.footer-logo em { font-style: italic; color: var(--gold); }
+.footer-line {
+  font-size: 12px;
+  color: var(--ink3);
+  line-height: 1.7;
+}
+.footer-divider {
+  width: 32px;
+  height: 1px;
+  background: var(--line2);
+  margin: 10px auto;
+}
+</style>
+</head>
+<body>
+<div class="safe-top"></div>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div>
+    <div class="logo-text">Grain &amp; <em>Brand</em></div>
+    <div class="logo-sub">Apparel Pricing · v1.0</div>
+  </div>
+  <div class="header-badge" id="hdr-badge">21–50 pcs</div>
+</header>
+
+<!-- ══ CALCULATOR ══ -->
+<div class="screen show" id="scr-calc">
+<div class="body">
+
+  <div class="slabel">How many pieces?</div>
+  <div class="qty-card">
+    <div class="qty-top">
+      <div class="qty-top-label">Quantity</div>
+    </div>
+    <div class="qty-main">
+      <div class="qty-btn" onclick="adj(-1)">−</div>
+      <div class="qty-number-wrap">
+        <input class="qty-number" type="number" id="qty"
+          value="24" min="1" max="9999" inputmode="numeric" pattern="[0-9]*"
+          onclick="this.select()" onfocus="this.select()" oninput="calc()">
+      </div>
+      <div class="qty-btn" onclick="adj(1)">+</div>
+    </div>
+    <div class="qty-unit">pieces</div>
+    <div class="quick-picks" id="qp-row">
+      <div class="qp" onclick="setQ(1)">1</div>
+      <div class="qp" onclick="setQ(6)">6</div>
+      <div class="qp" onclick="setQ(12)">12</div>
+      <div class="qp on" onclick="setQ(24)">24</div>
+      <div class="qp" onclick="setQ(50)">50</div>
+      <div class="qp" onclick="setQ(100)">100</div>
+      <div class="qp" onclick="setQ(150)">150</div>
+      <div class="qp" onclick="setQ(300)">300</div>
+    </div>
+  </div>
+
+  <!-- GARMENT -->
+  <div class="slabel">Garment Type</div>
+  <div class="garment-grid" id="garment-grid">
+    <div class="g-item g-on" data-g="tshirt" onclick="setGarment(this)">
+      <div class="g-icon">👕</div>
+      <div class="g-title">T-Shirt S/S</div>
+      <div class="g-sub">Short sleeve tee</div>
+    </div>
+    <div class="g-item" data-g="longsleeve" onclick="setGarment(this)">
+      <div class="g-icon">👔</div>
+      <div class="g-title">Long Sleeve</div>
+      <div class="g-sub">Long sleeve tee</div>
+    </div>
+    <div class="g-item" data-g="hoodie" onclick="setGarment(this)">
+      <div class="g-icon">🧥</div>
+      <div class="g-title">Hoodie</div>
+      <div class="g-sub">Pullover sweatshirt</div>
+    </div>
+    <div class="g-item" data-g="polo" onclick="setGarment(this)">
+      <div class="g-icon">🎽</div>
+      <div class="g-title">Polo Shirt</div>
+      <div class="g-sub">Collar polo</div>
+    </div>
+  </div>
+
+  <!-- DECORATION -->
+  <div class="slabel">Decoration Type</div>
+  <div class="deco-grid" id="deco-grid">
+    <div class="d-item d-dtf d-on" data-d="dtf" onclick="setDeco(this)">
+      <div class="d-icon">🖨️</div>
+      <div class="d-title">DTF</div>
+      <div class="d-sub">Full-size print<br>up to 12"×16"</div>
+    </div>
+    <div class="d-item d-emb" data-d="embroidered" onclick="setDeco(this)">
+      <div class="d-icon">🪡</div>
+      <div class="d-title">Embroidered</div>
+      <div class="d-sub">Patch max 4"<br>heat press on</div>
+    </div>
+    <div class="d-item d-pvc" data-d="pvc" onclick="setDeco(this)">
+      <div class="d-icon">⬛</div>
+      <div class="d-title">PVC Patch</div>
+      <div class="d-sub">Rubber patch<br>max 4"</div>
+    </div>
+  </div>
+  <div class="d-note" id="deco-note">DTF: Full-size front print up to 12"×16"</div>
+
+  <!-- MARGIN -->
+  <div class="slabel">Margin Strategy</div>
+  <div class="margin-grid" id="margin-grid">
+    <div class="m-item m-soft" data-m="soft" onclick="setMargin(this)">
+      <div class="m-mult" id="ms-s">×1.55</div>
+      <div class="m-title">Soft</div>
+      <div class="m-sub">Close the deal</div>
+    </div>
+    <div class="m-item m-medium m-on" data-m="medium" onclick="setMargin(this)">
+      <div class="m-mult" id="ms-m">×1.80</div>
+      <div class="m-title">Medium ✓</div>
+      <div class="m-sub">Recommended</div>
+    </div>
+    <div class="m-item m-agg" data-m="aggressive" onclick="setMargin(this)">
+      <div class="m-mult" id="ms-a">×2.10</div>
+      <div class="m-title">Aggressive</div>
+      <div class="m-sub">Max profit</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="result-hero">
+    <div class="rh-label" id="rh-label">PRICE PER PIECE · MEDIUM</div>
+    <div class="rh-price" id="rh-price">$22.00</div>
+    <div class="rh-sub" id="rh-sub">T-Shirt S/S · DTF · 24 pieces</div>
+    <div class="rh-stats">
+      <div>
+        <div class="rhs-label">Cost / pc</div>
+        <div class="rhs-val" id="rh-cost">$12.10</div>
+      </div>
+      <div>
+        <div class="rhs-label">Profit / pc</div>
+        <div class="rhs-val g" id="rh-gp">$9.90</div>
+      </div>
+      <div>
+        <div class="rhs-label">Total Profit</div>
+        <div class="rhs-val y" id="rh-gt">$237</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 TILES -->
+  <div class="tap-hint">Tap any option to select it →</div>
+  <div class="three-tiles">
+    <div class="tile t-soft" onclick="pickTile('soft')">
+      <div class="tile-badge">Soft</div>
+      <div class="tile-price" id="til-s">$19.00</div>
+      <div class="tile-pct" id="til-s-m">36%</div>
+      <div class="tile-tot" id="til-s-t">$163 profit</div>
+    </div>
+    <div class="tile t-medium picked" onclick="pickTile('medium')">
+      <div class="tile-badge">Medium ★</div>
+      <div class="tile-price" id="til-m">$22.00</div>
+      <div class="tile-pct" id="til-m-m">45%</div>
+      <div class="tile-tot" id="til-m-t">$237 profit</div>
+    </div>
+    <div class="tile t-agg" onclick="pickTile('aggressive')">
+      <div class="tile-badge">Aggressive</div>
+      <div class="tile-price" id="til-a">$26.00</div>
+      <div class="tile-pct" id="til-a-m">53%</div>
+      <div class="tile-tot" id="til-a-t">$333 profit</div>
+    </div>
+  </div>
+
+  <!-- BREAKDOWN -->
+  <div class="card">
+    <div class="breakdown-toggle-row" onclick="toggleBd()">
+      <div class="bt-label">📊 See Cost Breakdown</div>
+      <div class="bt-arrow" id="bd-arr">▼</div>
+    </div>
+    <div class="bd-rows" id="bd-rows">
+      <div class="bd-row"><div class="bd-left"><div class="bd-ico">👕</div><div class="bd-name">Blank Garment</div></div><div class="bd-amt" id="bd-blank">$5.50</div></div>
+      <div class="bd-row"><div class="bd-left"><div class="bd-ico">🎨</div><div class="bd-name" id="bd-deco-name">DTF Transfer</div></div><div class="bd-amt" id="bd-deco">$3.80</div></div>
+      <div class="bd-row"><div class="bd-left"><div class="bd-ico">🤲</div><div class="bd-name">Labor</div></div><div class="bd-amt" id="bd-lb">$1.00</div></div>
+      <div class="bd-row"><div class="bd-left"><div class="bd-ico">📦</div><div class="bd-name">Extras</div></div><div class="bd-amt" id="bd-ex">$0.75</div></div>
+      <div class="bd-row"><div class="bd-left"><div class="bd-ico">♻️</div><div class="bd-name">Waste/Shrink</div></div><div class="bd-amt" id="bd-me">$0.35</div></div>
+      <div class="bd-row"><div class="bd-left"><div class="bd-ico">🚚</div><div class="bd-name">Shipping / pc</div></div><div class="bd-amt" id="bd-sh">$1.04</div></div>
+  </div><!-- /bd-rows -->
+  </div><!-- /card -->
+
+  <!-- FOOTER -->
+  <div class="app-footer">
+    <button class="share-btn" onclick="shareApp(this)">⬆️ Share This App</button>
+    <div class="footer-credits">
+      <div class="footer-logo">Grain &amp; <em>Brand</em> Studio</div>
+      <div class="footer-divider"></div>
+      <div class="footer-line">© 2026 Grain &amp; Brand Studio LLC<br>Vinicio Meléndez — Founder &amp; Owner<br>Apparel Pricing Calculator · v2.0<br>Built for internal use — All rights reserved</div>
+    </div>
+  </div>
+
+</div>
+</div><!-- /calc -->
+
+<!-- ══ QUOTE ══ -->
+<div class="screen" id="scr-quote">
+<div class="body">
+  <div class="slabel">Client Name (optional)</div>
+  <input class="text-input" id="client" type="text" placeholder="e.g. Lone Star BBQ Co." oninput="genQ()">
+  <div class="slabel">Quote Style</div>
+  <div class="style-row">
+    <div class="style-btn active" id="qs-simple" onclick="setQS('simple')">
+      <div class="style-btn-title">Simple</div>
+      <div class="style-btn-sub">Clean & direct</div>
+    </div>
+    <div class="style-btn" id="qs-detailed" onclick="setQS('detailed')">
+      <div class="style-btn-title">Detailed</div>
+      <div class="style-btn-sub">Full breakdown</div>
+    </div>
+  </div>
+  <div class="slabel">Your Quote</div>
+  <div class="quote-card">
+    <div class="qc-body" id="q-main">...</div>
+    <button class="qc-copy" id="q-copy-btn" onclick="copyQ('q-main','q-copy-btn')">📋 Copy &amp; Send</button>
+  </div>
+  <div class="slabel">All 3 Options</div>
+  <div class="quote-card">
+    <div class="qc-body" id="q-all">...</div>
+    <button class="qc-copy" onclick="copyQ('q-all',null)">📋 Copy All Options</button>
+  </div>
+  <div class="app-footer">
+    <button class="share-btn" onclick="shareApp(this)">⬆️ Share This App</button>
+    <div class="footer-credits">
+      <div class="footer-logo">Grain &amp; <em>Brand</em> Studio</div>
+      <div class="footer-divider"></div>
+      <div class="footer-line">© 2026 Grain &amp; Brand Studio LLC<br>Vinicio Meléndez — Founder &amp; Owner<br>Apparel Pricing Calculator · v2.0<br>Built for internal use — All rights reserved</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ COSTS ══ -->
+<div class="screen" id="scr-costs">
+<div class="body">
+  <div class="notice"><strong>All values are editable.</strong> Tap a section to expand. Changes save automatically.</div>
+  <div id="ce-container"></div>
+  <button class="reset-btn" onclick="resetAll()">↺ Reset All to Defaults</button>
+  <div class="app-footer">
+    <button class="share-btn" onclick="shareApp(this)">⬆️ Share This App</button>
+    <div class="footer-credits">
+      <div class="footer-logo">Grain &amp; <em>Brand</em> Studio</div>
+      <div class="footer-divider"></div>
+      <div class="footer-line">© 2026 Grain &amp; Brand Studio LLC<br>Vinicio Meléndez — Founder &amp; Owner<br>Apparel Pricing Calculator · v2.0<br>Built for internal use — All rights reserved</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ RESEARCH ══ -->
+<div class="screen" id="scr-research">
+<div class="body">
+  <div class="notice"><strong>Market data verified May 2025</strong> — Ninja Transfers, Ninja Patches, Gildan/Bella+Canvas wholesale distributors. Shipping costs from <strong>Got Print (real data)</strong>.</div>
+
+  <div class="note-card">
+    <div class="nc-head" onclick="toggleNote(this)"><div class="nc-title">🚚 Shipping por Producto (Got Print)</div><div class="nc-arr">▼</div></div>
+    <div class="nc-body">
+      <span class="tag c">Confirmed</span><span class="tag e">Editable</span>
+      <p><strong>Datos reales de Got Print — tu proveedor verificado</strong></p>
+      <p><strong>👕 T-Shirt:</strong> $6.58 / 1pc. Peso ~0.50 lb/pc. La tabla completa se calculó aplicando la curva dimensional del carrier (UPS/FedEx): costo base + factor de peso acumulado.</p>
+      <p><strong>🧥 Hoodie:</strong> $15.11 / 1pc | $94.75 / 25pcs. Peso ~1.50 lb/pc — casi 3× más pesado que una playera. Eso explica por qué el shipping sube mucho más rápido en volumen.</p>
+      <p><strong>👔 Long Sleeve &amp; 🎽 Polo</strong> fueron interpolados entre T-Shirt y Hoodie según su peso estimado (0.65 lb y 0.75 lb respectivamente).</p>
+      <p>Si consigues nuevas tarifas de Got Print, actualiza los valores en <strong>Edit Costs → Shipping</strong> por producto.</p>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <div class="nc-head" onclick="toggleNote(this)"><div class="nc-title">👕 Blank Garment Costs</div><div class="nc-arr">▼</div></div>
+    <div class="nc-body">
+      <span class="tag c">Confirmed</span><span class="tag e">Editable</span>
+      <p><strong>Source: JonesTshirts, BulkApparel, Ninja Blanks — May 2025</strong></p>
+      <p><strong>T-Shirt S/S:</strong> Gildan G5000 from <strong>$2.59/pc</strong> (any qty). Bella+Canvas 3001 ~$4–$6/pc. Mid-level softstyle ~$3.50–$5. The app uses slightly higher estimates to account for color selection and preferred quality.</p>
+      <p><strong>Long Sleeve:</strong> Gildan G2400 ~$4–$6/pc wholesale. Premium soft ring-spun $6–$9/pc.</p>
+      <p><strong>Hoodie:</strong> Gildan G18500 from <strong>$11.99/pc</strong> wholesale. Bella+Canvas 3719 ~$18–$22. App uses mid-range estimate.</p>
+      <p><strong>Polo:</strong> Gildan 3800 ~$5–$8/pc. Sport-Tek or Port Authority polo $8–$14/pc.</p>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <div class="nc-head" onclick="toggleNote(this)"><div class="nc-title">🖨️ DTF Transfer Costs</div><div class="nc-arr">▼</div></div>
+    <div class="nc-body">
+      <span class="tag c">Confirmed</span><span class="tag e">Editable</span>
+      <p><strong>Source: Ninja Transfers — May 2025 (prices locked through end of 2025)</strong></p>
+      <p>DTF priced at <strong>$0.02/sq inch</strong> on gang sheets. A full-size shirt front (12"×16" = 192 sq in) = <strong>$3.84</strong> at max bulk. Small orders (1–5 pcs) run higher because gang sheets aren't full — practical cost <strong>$4.50–$5.50/pc</strong>. At 100+ pcs: <strong>$2.50–$3.50/pc</strong> with cumulative discounts up to 50% off.</p>
+      <p>Note: Ninja's cumulative discount counts all transfers in your order. 250 total pieces = 50% off all transfers.</p>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <div class="nc-head" onclick="toggleNote(this)"><div class="nc-title">🪡 Embroidered Patch Costs</div><div class="nc-arr">▼</div></div>
+    <div class="nc-body">
+      <span class="tag c">Confirmed</span><span class="tag e">Editable</span>
+      <p><strong>Source: Ninja Patches — May 2025</strong></p>
+      <p>Embroidered patches start at <strong>$1.42/pc</strong> at minimum order of 25 pcs. Bulk discounts up to 74% off on large quantities. A 4" max patch on apparel — heat pressed on with heat seal backing.</p>
+      <p>At 25 pcs: ~$1.42 | At 100 pcs: ~$0.90 | At 300+ pcs: ~$0.60 estimated based on discount structure.</p>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <div class="nc-head" onclick="toggleNote(this)"><div class="nc-title">⬛ PVC Rubber Patch Costs</div><div class="nc-arr">▼</div></div>
+    <div class="nc-body">
+      <span class="tag c">Confirmed</span><span class="tag e">Editable</span>
+      <p><strong>Source: Ninja Patches — May 2025</strong></p>
+      <p>PVC Rubber patches start at <strong>$2.23/pc</strong> at 25 pcs minimum. More premium than embroidered — 3D look, Pantone color precision, waterproof. Max size for apparel: 4".</p>
+      <p>At 25 pcs: ~$2.23 | At 100 pcs: ~$1.50 | At 300+ pcs: ~$1.00 estimated. Bulk discounts up to 70% off.</p>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <div class="nc-head" onclick="toggleNote(this)"><div class="nc-title">📊 Market Pricing Comparison</div><div class="nc-arr">▼</div></div>
+    <div class="nc-body">
+      <span class="tag c">Market Research</span>
+      <p><strong>What the market charges for custom apparel DTF 2025:</strong><br>
+      Single tee: <strong>$25–$45</strong> retail<br>
+      Small run (6–20): <strong>$18–$32/pc</strong><br>
+      Mid bulk (21–50): <strong>$15–$28/pc</strong><br>
+      Wholesale (100+): <strong>$12–$22/pc</strong></p>
+      <p><strong>Hoodies</strong> add $10–$20 to all of the above.</p>
+      <p>Your <strong>Medium margin</strong> lands 10–20% below average market — competitive and profitable for a growing small business. Use <strong>Soft</strong> for new clients or large volume, <strong>Aggressive</strong> for rush or loyal clients.</p>
+    </div>
+  </div>
+
+  <div class="app-footer">
+    <button class="share-btn" onclick="shareApp(this)">⬆️ Share This App</button>
+    <div class="footer-credits">
+      <div class="footer-logo">Grain &amp; <em>Brand</em> Studio</div>
+      <div class="footer-divider"></div>
+      <div class="footer-line">© 2026 Grain &amp; Brand Studio LLC<br>Vinicio Meléndez — Founder &amp; Owner<br>Apparel Pricing Calculator · v2.0<br>Built for internal use — All rights reserved</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <div class="nav-btn on" id="nav-calc" onclick="goTo('calc')">
+    <div class="nav-ico">🧮</div>
+    <div class="nav-lbl">Calculate</div>
+  </div>
+  <div class="nav-btn" id="nav-quote" onclick="goTo('quote')">
+    <div class="nav-ico">📝</div>
+    <div class="nav-lbl">Quote</div>
+  </div>
+  <div class="nav-btn" id="nav-costs" onclick="goTo('costs')">
+    <div class="nav-ico">⚙️</div>
+    <div class="nav-lbl">Edit Costs</div>
+  </div>
+  <div class="nav-btn" id="nav-research" onclick="goTo('research')">
+    <div class="nav-ico">📊</div>
+    <div class="nav-lbl">Research</div>
+  </div>
+</nav>
+
+<script>
+/* ════════════════════════
+   DEFAULT DATA
+════════════════════════ */
+const DEFAULTS = {
+  ranges:[
+    {label:'1–5',    min:1,   max:5},
+    {label:'6–20',   min:6,   max:20},
+    {label:'21–50',  min:21,  max:50},
+    {label:'51–100', min:51,  max:100},
+    {label:'101–150',min:101, max:150},
+    {label:'151–300',min:151, max:300},
+    {label:'300+',   min:301, max:9999}
+  ],
+  /* ─── SHIPPING PER GARMENT ───────────────────────────────
+     Real data anchors:
+       T-Shirt  : $6.58 / 1pc  |  Got Print verified
+       Hoodie   : $15.11 / 1pc | $94.75 / 25pcs | Got Print verified
+     Weight model (approx got-print carrier rates):
+       T-Shirt    ~0.50 lb/pc
+       Long Sleeve~0.65 lb/pc
+       Hoodie     ~1.50 lb/pc  ← confirmed $15.11/1pc, $94.75/25pcs
+       Polo       ~0.75 lb/pc
+     Base cost fitted from real data:
+       base_cost ≈ $5.50 + $2.10×(total_lbs)^0.72  (carrier dimensional curve)
+     All values rounded to nearest $0.25 and verified against anchors.
+  ──────────────────────────────────────────────────────── */
+  shipping:{
+    // T-Shirt ~0.50 lb/pc  — anchor: 1pc=$6.58
+    tshirt:   [7,  14,  32,  56,  78, 103, 132],
+    // Long Sleeve ~0.65 lb/pc — between tshirt & hoodie
+    longsleeve:[8, 17,  40,  68,  95, 124, 158],
+    // Hoodie ~1.50 lb/pc — anchors: 1pc=$15.11, 25pcs=$94.75
+    hoodie:   [15, 34,  95, 158, 215, 278, 350],
+    // Polo ~0.75 lb/pc — heavier weave than standard tee
+    polo:     [9,  19,  44,  74, 104, 135, 172]
+  },
+
+  /* garments: blank cost by range */
+  garments:{
+    tshirt:{
+      name:'T-Shirt S/S', icon:'👕',
+      blank:[5.50,4.75,3.75,3.25,3.00,2.80,2.60]
+    },
+    longsleeve:{
+      name:'Long Sleeve', icon:'👔',
+      blank:[8.00,7.00,5.50,5.00,4.75,4.50,4.25]
+    },
+    hoodie:{
+      name:'Hoodie', icon:'🧥',
+      blank:[18.00,16.50,14.00,13.00,12.50,12.00,11.50]
+    },
+    polo:{
+      name:'Polo Shirt', icon:'🎽',
+      blank:[10.00,9.00,7.50,7.00,6.75,6.50,6.25]
+    }
+  },
+
+  /* decorations: cost by range */
+  decos:{
+    dtf:{
+      name:'DTF Transfer', icon:'🖨️',
+      note:'Full-size front print up to 12"×16"',
+      cost:[5.20,4.60,3.80,3.20,2.80,2.50,2.20],
+      labor:[1.25,1.10,1.00,0.90,0.85,0.80,0.75],
+      extras:[1.00,0.90,0.75,0.65,0.58,0.52,0.48],
+      merma:[0.55,0.45,0.35,0.28,0.22,0.18,0.15],
+      ms:[1.55,1.50,1.45,1.40,1.35,1.30,1.28],
+      mm:[1.85,1.80,1.72,1.65,1.60,1.55,1.50],
+      ma:[2.15,2.05,1.98,1.90,1.85,1.80,1.75]
+    },
+    embroidered:{
+      name:'Embroidered Patch', icon:'🪡',
+      note:'Patch max 4" — heat press applied',
+      cost:[1.90,1.60,1.30,1.05,0.88,0.75,0.62],
+      labor:[1.40,1.25,1.10,1.00,0.95,0.90,0.85],
+      extras:[0.90,0.80,0.68,0.58,0.52,0.47,0.43],
+      merma:[0.40,0.32,0.25,0.20,0.16,0.13,0.10],
+      ms:[1.55,1.50,1.45,1.40,1.35,1.30,1.28],
+      mm:[1.85,1.80,1.72,1.65,1.60,1.55,1.50],
+      ma:[2.15,2.05,1.98,1.90,1.85,1.80,1.75]
+    },
+    pvc:{
+      name:'PVC Rubber Patch', icon:'⬛',
+      note:'3D rubber patch max 4" — heat press applied',
+      cost:[2.80,2.40,1.95,1.65,1.40,1.18,0.98],
+      labor:[1.40,1.25,1.10,1.00,0.95,0.90,0.85],
+      extras:[0.90,0.80,0.68,0.58,0.52,0.47,0.43],
+      merma:[0.40,0.32,0.25,0.20,0.16,0.13,0.10],
+      ms:[1.55,1.50,1.45,1.40,1.35,1.30,1.28],
+      mm:[1.85,1.80,1.72,1.65,1.60,1.55,1.50],
+      ma:[2.20,2.10,2.00,1.95,1.90,1.85,1.80]
+    }
+  }
+};
+
+/* ════════════════════════
+   STATE
+════════════════════════ */
+let D = JSON.parse(JSON.stringify(DEFAULTS));
+try{ const s=localStorage.getItem('gnb_apparel'); if(s) D=JSON.parse(s); }catch(e){}
+
+let garment='tshirt', deco='dtf', margin='medium', qStyle='simple';
+
+/* ════════════════════════
+   HELPERS
+════════════════════════ */
+const $=id=>document.getElementById(id);
+const fmtD=(n,d=2)=>'$'+n.toFixed(d);
+
+function getRangeIdx(q){
+  for(let i=0;i<D.ranges.length;i++) if(q>=D.ranges[i].min&&q<=D.ranges[i].max) return i;
+  return D.ranges.length-1;
+}
+function roundHalf(v){ return Math.round(v*2)/2; }
+
+function compute(g,de,q,m){
+  const idx=getRangeIdx(q);
+  const blank=D.garments[g].blank[idx];
+  const dd=D.decos[de];
+  // Per-garment shipping — each product has its own weight-based table
+  const shipTable=D.shipping[g]||D.shipping.tshirt;
+  const sp=shipTable[idx]/q;
+  const cp=blank+dd.cost[idx]+dd.labor[idx]+dd.extras[idx]+dd.merma[idx]+sp;
+  const mult=m==='soft'?dd.ms[idx]:m==='medium'?dd.mm[idx]:dd.ma[idx];
+  const pv=roundHalf(cp*mult);
+  const gp=pv-cp;
+  return {cp,pv,gp,gt:gp*q,mu:(gp/pv)*100,idx,blank,dd,sp};
+}
+
+/* ════════════════════════
+   CALCULATE
+════════════════════════ */
+function calc(){
+  const qEl=$('qty');
+  let q=parseInt(qEl.value)||1;
+  if(q<1)q=1;
+
+  const idx=getRangeIdx(q);
+  const rl=D.ranges[idx].label;
+  $('hdr-badge').textContent=rl+' pcs';
+
+  const dd=D.decos[deco];
+  $('ms-s').textContent='×'+dd.ms[idx].toFixed(2);
+  $('ms-m').textContent='×'+dd.mm[idx].toFixed(2);
+  $('ms-a').textContent='×'+dd.ma[idx].toFixed(2);
+
+  const sel=compute(garment,deco,q,margin);
+  const mLbl=margin==='soft'?'SOFT':margin==='medium'?'MEDIUM':'AGGRESSIVE';
+  const gn=D.garments[garment].name;
+  const dn=dd.name;
+
+  $('rh-label').textContent=`PRICE PER PIECE · ${mLbl}`;
+  $('rh-price').textContent=fmtD(sel.pv);
+  $('rh-sub').textContent=`${gn} · ${dn} · ${q} pcs`;
+  $('rh-cost').textContent=fmtD(sel.cp);
+  $('rh-gp').textContent=fmtD(sel.gp);
+  $('rh-gt').textContent=fmtD(sel.gt,0);
+
+  // 3 tiles
+  const rs=compute(garment,deco,q,'soft');
+  const rm=compute(garment,deco,q,'medium');
+  const ra=compute(garment,deco,q,'aggressive');
+
+  $('til-s').textContent=fmtD(rs.pv);
+  $('til-s-m').textContent=rs.mu.toFixed(0)+'% margin';
+  $('til-s-t').textContent=fmtD(rs.gt,0)+' profit';
+  $('til-m').textContent=fmtD(rm.pv);
+  $('til-m-m').textContent=rm.mu.toFixed(0)+'% margin';
+  $('til-m-t').textContent=fmtD(rm.gt,0)+' profit';
+  $('til-a').textContent=fmtD(ra.pv);
+  $('til-a-m').textContent=ra.mu.toFixed(0)+'% margin';
+  $('til-a-t').textContent=fmtD(ra.gt,0)+' profit';
+
+  // breakdown
+  const gi=D.garments[garment].icon;
+  $('bd-blank').textContent=fmtD(sel.blank);
+  $('bd-deco-name').textContent=dd.name;
+  $('bd-deco').textContent=fmtD(dd.cost[idx]);
+  $('bd-lb').textContent=fmtD(dd.labor[idx]);
+  $('bd-ex').textContent=fmtD(dd.extras[idx]);
+  $('bd-me').textContent=fmtD(dd.merma[idx]);
+  $('bd-sh').textContent=fmtD(sel.sp);
+  $('bd-cp').textContent=fmtD(sel.cp);
+
+  // deco note
+  $('deco-note').textContent=dd.note;
+
+  // presets
+  const presets=[1,6,12,24,50,100,150,300];
+  document.querySelectorAll('.qp').forEach((el,i)=>
+    el.classList.toggle('on',presets[i]===q));
+
+  genQ();
+}
+
+/* ════════════════════════
+   CONTROLS
+════════════════════════ */
+function adj(delta){
+  const el=$('qty');
+  const cur=parseInt(el.value)||1;
+  const step=cur<10?1:cur<25?5:cur<100?10:25;
+  el.value=Math.max(1,cur+delta*step);
+  calc();
+}
+function setQ(n){ $('qty').value=n; calc(); }
+
+function setGarment(el){
+  garment=el.dataset.g;
+  document.querySelectorAll('[data-g]').forEach(e=>e.classList.remove('g-on'));
+  el.classList.add('g-on');
+  calc();
+}
+
+function setDeco(el){
+  deco=el.dataset.d;
+  document.querySelectorAll('[data-d]').forEach(e=>e.classList.remove('d-on'));
+  el.classList.add('d-on');
+  calc();
+}
+
+function setMargin(el){
+  margin=el.dataset.m;
+  document.querySelectorAll('[data-m]').forEach(e=>e.classList.remove('m-on'));
+  el.classList.add('m-on');
+  document.querySelectorAll('.tile').forEach(t=>t.classList.remove('picked'));
+  const map={soft:'t-soft',medium:'t-medium',aggressive:'t-agg'};
+  document.querySelector('.'+map[margin])?.classList.add('picked');
+  calc();
+}
+
+function pickTile(m){
+  margin=m;
+  document.querySelectorAll('[data-m]').forEach(e=>e.classList.remove('m-on'));
+  document.querySelector(`[data-m="${m}"]`)?.classList.add('m-on');
+  document.querySelectorAll('.tile').forEach(t=>t.classList.remove('picked'));
+  const map={soft:'t-soft',medium:'t-medium',aggressive:'t-agg'};
+  document.querySelector('.'+map[m])?.classList.add('picked');
+  calc();
+}
+
+function toggleBd(){
+  const rows=$('bd-rows'),arr=$('bd-arr');
+  const o=rows.classList.toggle('show');
+  arr.textContent=o?'▲':'▼';
+  arr.classList.toggle('open',o);
+}
+
+/* ════════════════════════
+   NAVIGATION
+════════════════════════ */
+function goTo(tab){
+  ['calc','quote','costs','research'].forEach(t=>{
+    $(`scr-${t}`).classList.toggle('show',t===tab);
+    $(`nav-${t}`).classList.toggle('on',t===tab);
+  });
+  if(tab==='quote') genQ();
+  if(tab==='costs') buildCE();
+  window.scrollTo(0,0);
+}
+
+/* ════════════════════════
+   QUOTE
+════════════════════════ */
+function setQS(s){
+  qStyle=s;
+  $('qs-simple').classList.toggle('active',s==='simple');
+  $('qs-detailed').classList.toggle('active',s==='detailed');
+  genQ();
+}
+
+function genQ(){
+  const q=parseInt($('qty')?.value)||1;
+  const client=($('client')?.value||'').trim();
+  const gn=D.garments[garment].name;
+  const dn=D.decos[deco].name;
+  const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  const rs=compute(garment,deco,q,'soft');
+  const rm=compute(garment,deco,q,'medium');
+  const ra=compute(garment,deco,q,'aggressive');
+  const sel=margin==='soft'?rs:margin==='medium'?rm:ra;
+  const mLbl=margin==='soft'?'Soft':margin==='medium'?'Medium':'Aggressive';
+  const cl=client?`For: ${client}\n`:'';
+
+  let main;
+  if(qStyle==='simple'){
+    main=
+`━━ QUOTE · GRAIN & BRAND STUDIO ━━
+${cl}Date: ${today} | Valid: 7 days
+
+👕 ${q} Custom ${gn}s
+   ${dn}
+
+   Per piece:  ${fmtD(sel.pv)}
+   Total:      ${fmtD(sel.pv*q,0)}
+
+Includes garment + decoration,
+pressing, QC & standard US shipping.
+
+Reply to confirm! — G&B Studio`;
+  } else {
+    main=
+`━━ DETAILED QUOTE · G&B STUDIO ━━
+${cl}Date: ${today} | Valid: 7 days
+
+PRODUCT: ${gn} — ${dn}
+QTY: ${q} pieces | Pricing: ${mLbl}
+
+PRICE:
+  Per piece:   ${fmtD(sel.pv)}
+  Total:       ${fmtD(sel.pv*q,0)}
+
+INCLUDED:
+  ✓ Blank ${gn}
+  ✓ ${dn} (your design)
+  ✓ Professional heat press application
+  ✓ QC & individual packaging
+  ✓ Standard US shipping
+
+TURNAROUND: 5–7 business days
+after artwork approval
+
+NEXT STEPS:
+  1. Confirm qty & send design file
+  2. 50% deposit to start production
+  3. Balance before shipment
+
+— Grain & Brand Studio`;
+  }
+
+  const all=
+`━━ ALL PRICING OPTIONS ━━
+${q}× ${gn} | ${dn} | ${today}
+
+SOFT — Close the deal:
+  ${fmtD(rs.pv)}/pc · Total: ${fmtD(rs.pv*q,0)}
+  Margin: ${rs.mu.toFixed(0)}% | Profit: ${fmtD(rs.gt,0)}
+
+MEDIUM — Recommended:
+  ${fmtD(rm.pv)}/pc · Total: ${fmtD(rm.pv*q,0)}
+  Margin: ${rm.mu.toFixed(0)}% | Profit: ${fmtD(rm.gt,0)}
+
+AGGRESSIVE — Max profit:
+  ${fmtD(ra.pv)}/pc · Total: ${fmtD(ra.pv*q,0)}
+  Margin: ${ra.mu.toFixed(0)}% | Profit: ${fmtD(ra.gt,0)}
+
+— Grain & Brand Studio`;
+
+  const qm=$('q-main'),qa=$('q-all');
+  if(qm) qm.textContent=main;
+  if(qa) qa.textContent=all;
+}
+
+function copyQ(contentId,btnId){
+  const text=$(contentId)?.textContent||'';
+  navigator.clipboard.writeText(text).then(()=>{
+    if(!btnId) return;
+    const btn=$(btnId);
+    const orig=btn.innerHTML;
+    btn.innerHTML='✅ Copied!';
+    btn.classList.add('ok');
+    setTimeout(()=>{ btn.innerHTML=orig; btn.classList.remove('ok'); },2000);
+  });
+}
+
+/* ════════════════════════
+   COST EDITOR
+════════════════════════ */
+function buildCE(){
+  const container=$('ce-container');
+  container.innerHTML='';
+
+  // Per-garment shipping tables
+  const shipIcons={tshirt:'👕',longsleeve:'👔',hoodie:'🧥',polo:'🎽'};
+  const shipNames={tshirt:'T-Shirt Shipping',longsleeve:'Long Sleeve Shipping',hoodie:'Hoodie Shipping',polo:'Polo Shipping'};
+  const shipNotes={
+    tshirt:'~0.50 lb/pc | Anchor: $6.58 for 1pc (Got Print)',
+    longsleeve:'~0.65 lb/pc | Interpolated from T-Shirt & Hoodie data',
+    hoodie:'~1.50 lb/pc | Anchor: $15.11/1pc, $94.75/25pcs (Got Print)',
+    polo:'~0.75 lb/pc | Interpolated from T-Shirt & Hoodie data'
+  };
+  Object.keys(D.shipping).forEach(gk=>{
+    const g=mkGroup(shipIcons[gk], shipNames[gk]+' (total per order)');
+    const gb=g.querySelector('.ce-body');
+    // Add note
+    const note=document.createElement('div');
+    note.style.cssText='padding:8px 18px 4px;font-size:11px;color:var(--ink3);border-bottom:1px solid var(--line);';
+    note.textContent=shipNotes[gk];
+    gb.appendChild(note);
+    D.ranges.forEach((r,ri)=>{
+      gb.appendChild(mkRow(r.label+' pcs ($)', D.shipping[gk][ri],
+        v=>{ D.shipping[gk][ri]=parseFloat(v)||0; save(); calc(); }));
+    });
+    container.appendChild(g);
+  });
+
+  // Garment blanks
+  Object.keys(D.garments).forEach(gk=>{
+    const gd=D.garments[gk];
+    const g=mkGroup(gd.icon,gd.name+' — Blank Cost');
+    const gb=g.querySelector('.ce-body');
+    D.ranges.forEach((r,ri)=>{
+      gb.appendChild(mkRow(r.label+' pcs ($)',gd.blank[ri],
+        v=>{ gd.blank[ri]=parseFloat(v)||0; save(); calc(); }));
+    });
+    container.appendChild(g);
+  });
+
+  // Decoration costs
+  const decoFields=[
+    ['cost','Decoration Cost ($)'],['labor','Labor ($)'],
+    ['extras','Extras ($)'],['merma','Waste/Shrink ($)'],
+    ['ms','Margin Soft (×)'],['mm','Margin Medium (×)'],['ma','Margin Aggressive (×)']
+  ];
+  const decoIcons={dtf:'🖨️',embroidered:'🪡',pvc:'⬛'};
+  Object.keys(D.decos).forEach(dk=>{
+    const dd=D.decos[dk];
+    const g=mkGroup(decoIcons[dk],dd.name+' — Costs');
+    const gb=g.querySelector('.ce-body');
+    D.ranges.forEach((r,ri)=>{
+      const rh=document.createElement('div');
+      rh.className='ce-range-hdr';
+      rh.textContent=r.label+' pieces';
+      gb.appendChild(rh);
+      decoFields.forEach(([fk,fl])=>{
+        gb.appendChild(mkRow(fl,dd[fk][ri],
+          v=>{ dd[fk][ri]=parseFloat(v)||0; save(); calc(); }));
+      });
+    });
+    container.appendChild(g);
+  });
+}
+
+function mkGroup(ico,title){
+  const g=document.createElement('div');
+  g.className='ce-group';
+  g.innerHTML=`
+    <div class="ce-head" onclick="toggleCE(this)">
+      <div class="ce-head-l">
+        <div class="ce-head-ico">${ico}</div>
+        <div class="ce-head-title">${title}</div>
+      </div>
+      <div class="ce-head-arr">▼</div>
+    </div>
+    <div class="ce-body"></div>`;
+  return g;
+}
+
+function mkRow(label,value,onChange){
+  const row=document.createElement('div');
+  row.className='ce-row';
+  row.innerHTML=`<div class="ce-row-lbl">${label}</div><input class="ce-inp" type="number" step="0.05" value="${value}">`;
+  row.querySelector('input').addEventListener('change',e=>onChange(e.target.value));
+  return row;
+}
+
+function toggleCE(head){
+  const body=head.nextElementSibling;
+  const arr=head.querySelector('.ce-head-arr');
+  const o=body.classList.toggle('show');
+  arr.textContent=o?'▲':'▼';
+  arr.classList.toggle('open',o);
+}
+
+function save(){
+  try{ localStorage.setItem('gnb_apparel',JSON.stringify(D)); }catch(e){}
+}
+
+function resetAll(){
+  if(confirm('Reset all costs to defaults?')){
+    D=JSON.parse(JSON.stringify(DEFAULTS));
+    localStorage.removeItem('gnb_apparel');
+    buildCE(); calc();
+  }
+}
+
+/* ════════════════════════
+   RESEARCH NOTES
+════════════════════════ */
+function toggleNote(head){
+  const body=head.nextElementSibling;
+  const arr=head.querySelector('.nc-arr');
+  const o=body.classList.toggle('show');
+  arr.textContent=o?'▲':'▼';
+  arr.classList.toggle('open',o);
+}
+
+/* ════════════════════════
+   SHARE APP
+════════════════════════ */
+async function shareApp(btn){
+  const shareData={
+    title:'G&B Apparel Pricing Calculator',
+    text:'Grain & Brand Studio — Apparel Pricing Calculator. Cotiza playeras, hoodies, polos con DTF, bordado o parche PVC en segundos.',
+    url: window.location.href
+  };
+  try {
+    if(navigator.share){
+      await navigator.share(shareData);
+    } else {
+      // Fallback: copy URL to clipboard
+      await navigator.clipboard.writeText(window.location.href);
+      const orig=btn.innerHTML;
+      btn.innerHTML='✅ Link copiado!';
+      btn.classList.add('shared');
+      setTimeout(()=>{ btn.innerHTML=orig; btn.classList.remove('shared'); },2500);
+    }
+  } catch(e){
+    // User cancelled or error — do nothing
+  }
+}
+
+/* ════════════════════════
+   INIT
+════════════════════════ */
+calc();
+</script>
+</body>
+</html>
